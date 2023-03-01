@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerControler : MonoBehaviour
 {
+    public static playerControler instance;
 
     public Rigidbody2D foxRb;
     public GameObject playerRun;
@@ -14,12 +15,19 @@ public class playerControler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        //为上跳，下落事件添加订阅关系。
+        EventCenter.AddListener(EventType.jump,JumpUp);
+        EventCenter.AddListener(EventType.down,FallDown);
     }
 
     // Update is called once per frame
     void FixedUpdate()//根据实际帧数平滑移动效果
     {
-        Movement();
+        //Movement();
     }
 
     //要在Rigidbody里的Constraints里面勾选冻结z轴角度，防止物体旋转
@@ -56,5 +64,17 @@ public class playerControler : MonoBehaviour
             AudioClip clip = Resources.Load<AudioClip>("SoundEffect/捡到樱桃");
             AudioSource.PlayClipAtPoint(clip, new Vector2(0, 0), 5);//在特定时间点播放
         }
+    }
+
+    public void JumpUp()
+    {
+        playerRun.SetActive(false);
+        playerFly.SetActive(true);
+    }
+
+    public void FallDown()
+    {
+        playerFly.SetActive(false);
+        playerRun.SetActive(true);
     }
 }

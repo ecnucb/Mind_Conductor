@@ -1372,7 +1372,7 @@ GameObject:
   - component: {fileID: 1211418911}
   - component: {fileID: 1211418910}
   m_Layer: 0
-  m_Name: COM
+  m_Name: PortManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1391,12 +1391,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gui: {fileID: 0}
-  portName: COM3
   baudRate: 9600
   parity: 0
   dataBits: 8
   stopBits: 1
   listReceive: 
+  receiveStr: 
+  accelerationX: 0
+  accelerationY: 0
+  lgy: 0
+  lgp: 0
+  bendDegree: 0
+  defaultBendDegree: -400
 --- !u!4 &1211418911
 Transform:
   m_ObjectHideFlags: 0
